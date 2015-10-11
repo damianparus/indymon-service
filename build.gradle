@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.3'
+        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '1.2.5.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://github.com/damianparus/indymon-common/raw/master/releases'
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.5.RELEASE'
+    compile group: 'org.indymon',              name: 'indymon-common',          version: '1.0.0.RELEASE'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
+
