@@ -45,6 +45,10 @@
             return this.definition.fontSize;
         },
 
+        getZIndex: function () {
+            return this.definition.zIndex;
+        },
+
         searchEvent: function (searchText) {
             return this.searcher.searchEvent(searchText);
         }

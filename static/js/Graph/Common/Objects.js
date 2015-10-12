@@ -7,6 +7,8 @@
         initialize: function () {
             this.checks = [];
             this.presenters = [];
+            this.zIndexedPresenters = [];
+            this.zIndexes = [];
         },
 
         loadStatuses: function (statusesLoadCompletedCallBack) {
@@ -47,6 +49,7 @@
             this.importDefinitionsChecks(dataToImport.checks);
             this.importDefinitionsPresentersAggregates(dataToImport.presentersAggregators);
             this.importDefinitionsPresentersChecks(dataToImport.presentersChecks);
+            this.zIndexes.sort();
             definitionsLoadCompletedCallBack();
         },
 
@@ -81,11 +84,25 @@
 
         addPresenter: function (newPresenter) {
             var newPresenterSymbol = newPresenter.getSymbol();
+            var zIndex = newPresenter.getZIndex();
+            if (typeof this.zIndexes[zIndex] === 'undefined') {
+                this.zIndexes[zIndex] = zIndex;
+                this.zIndexedPresenters[zIndex] = [];
+            }
+            this.zIndexedPresenters[zIndex].push(newPresenter);
             if (typeof this.presenters[newPresenterSymbol] === 'undefined') {
                 this.presenters[newPresenterSymbol] = newPresenter;
             } else {
                 alert("Duplicated presenter, skipping (" + newPresenterSymbol);
             }
+        },
+
+        getZIndexes: function () {
+            return this.zIndexes;
+        },
+
+        getZIndexedPresenters: function () {
+            return this.zIndexedPresenters;
         },
 
         getPresenters: function () {

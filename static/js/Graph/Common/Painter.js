@@ -15,13 +15,16 @@
 
         definitionsCompleted: function () {
             var self = this;
-            var presenters = this.objects.getPresenters();
-
-            for (var currentPainterIndex in presenters) {
-                if (presenters.hasOwnProperty(currentPainterIndex)) {
-                    var currentPainter = presenters[currentPainterIndex];
-                    currentPainter.setWorkspace(self.workspace);
-                    self.addPainter(currentPainter);
+            var zIndexes = this.objects.getZIndexes();
+            var presenters = this.objects.getZIndexedPresenters();
+            for (var currentZIndexIndex in zIndexes) {
+                var currentZIndex = zIndexes[currentZIndexIndex];
+                for (var currentPainterIndex in presenters[currentZIndex]) {
+                    if (presenters[currentZIndex].hasOwnProperty(currentPainterIndex)) {
+                        var currentPainter = presenters[currentZIndex][currentPainterIndex];
+                        currentPainter.setWorkspace(self.workspace);
+                        self.addPainter(currentPainter);
+                    }
                 }
             }
             this.workspace.paint();
