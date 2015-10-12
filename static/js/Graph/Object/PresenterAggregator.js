@@ -47,7 +47,7 @@
 
         getMessage: function () {
             var message = "";
-            $.each(this.getSubPresenters(), function (index, currentSubPresenter) {
+            $.each(this.getSubPresentersMessages(), function (index, currentSubPresenter) {
                 message += this.objects.getPresenter(currentSubPresenter).getMessage() + "\n";
             }.bind(this));
 
