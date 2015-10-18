@@ -22,12 +22,11 @@ public class StatusEndpoint {
 
     @RequestMapping(value="/status", method= RequestMethod.PUT)
     public PutStatusResponse status(@RequestBody PutStatusRequest statusesToSave) {
-
         int savedStatuses = 0;
         for (CheckStatus checkStatusToSave : statusesToSave.getChecksStatuses()) {
-            if (objectsStorage.getChecks().containsKey(checkStatusToSave.getSymbol())) {
+            Check check = objectsStorage.getChecks().get(checkStatusToSave.getSymbol());
+            if (check != null && checkStatusToSave.getExpireTime() > 0) {
                 savedStatuses++;
-                Check check = objectsStorage.getChecks().get(checkStatusToSave.getSymbol());
                 check.setStatus(checkStatusToSave);
             }
         }

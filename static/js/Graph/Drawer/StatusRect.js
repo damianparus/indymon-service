@@ -31,21 +31,14 @@
                     break;
                 case 1:
                     if (markedInSearch || !searchMode) {
-                        boxFillColor = '#ffffff';
+                        boxFillColor = '#5A1E1E';
+                        textFillColor = '#ffffff';
                     } else {
-                        boxFillColor = '#888888';
+                        boxFillColor = '#665959';
+                        textFillColor = '#888888';
                     }
-                    textFillColor = '#000000';
                     break;
                 case 2:
-                    if (markedInSearch || !searchMode) {
-                        boxFillColor = '#ffff00';
-                    } else {
-                        boxFillColor = '#888800';
-                    }
-                    textFillColor = '#000000';
-                    break;
-                case 3:
                     if (markedInSearch || !searchMode) {
                         boxFillColor = '#ff0000';
                         textFillColor = '#ffffff';
@@ -54,14 +47,21 @@
                         textFillColor = '#888888';
                     }
                     break;
+                case 3:
+                    if (markedInSearch || !searchMode) {
+                        boxFillColor = '#ffff00';
+                    } else {
+                        boxFillColor = '#888800';
+                    }
+                    textFillColor = '#000000';
+                    break;
                 case 4:
                     if (markedInSearch || !searchMode) {
-                        boxFillColor = '#5A1E1E';
-                        textFillColor = '#ffffff';
+                        boxFillColor = '#ffffff';
                     } else {
-                        boxFillColor = '#665959';
-                        textFillColor = '#888888';
+                        boxFillColor = '#888888';
                     }
+                    textFillColor = '#000000';
                     break;
                 default:
                     alert("Unknown status: " + status + " ("+ title +")");
