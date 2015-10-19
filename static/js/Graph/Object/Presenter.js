@@ -66,7 +66,9 @@
                 eventData.y >= this.getTop() &&
                 eventData.y <= this.getTop() + this.getHeight()
             ) {
-                window.open(this.getClickUrl());
+                if (this.getClickUrl() !== null) {
+                    window.open(this.getClickUrl());
+                }
             }
         }
 
