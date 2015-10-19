@@ -41,6 +41,10 @@
             return this.definition.top;
         },
 
+        getClickUrl: function () {
+            return this.definition.clickUrl;
+        },
+
         getFontSize: function () {
             return this.definition.fontSize;
         },
@@ -51,6 +55,19 @@
 
         searchEvent: function (searchText) {
             return this.searcher.searchEvent(searchText);
+        },
+
+        processMouseUpEvent: function (eventData) {
+            IndyMon.Graph.Object.Presenter.__super__.processMouseUpEvent.apply(this, [eventData]);
+            if (
+                !eventData.wasMoved &&
+                eventData.x >= this.getLeft() &&
+                eventData.x <= this.getLeft() + this.getWidth() &&
+                eventData.y >= this.getTop() &&
+                eventData.y <= this.getTop() + this.getHeight()
+            ) {
+                window.open(this.getClickUrl());
+            }
         }
 
     });
