@@ -2,9 +2,6 @@ package org.indymon.service.rest;
 
 import org.indymon.common.definitions.PutDefinitionsRequest;
 import org.indymon.common.definitions.PutDefinitionsResponse;
-import org.indymon.common.model.CheckDefinition;
-import org.indymon.common.model.PresenterAggregatorDefinition;
-import org.indymon.common.model.PresenterCheckDefinition;
 import org.indymon.common.definitions.GetDefinitionsResponse;
 import org.indymon.service.model.ObjectsStorage;
 import org.indymon.service.object.Check;
@@ -27,22 +24,14 @@ public class DefinitionsEndpoint {
     @RequestMapping(value="/definitions", method= RequestMethod.PUT)
     public PutDefinitionsResponse putDefinitions(@RequestBody PutDefinitionsRequest definitionsToSave) {
 
-        for (CheckDefinition checkToSave : definitionsToSave.getChecks()) {
-            objectsStorage.putCheck(checkToSave);
-        }
-
-        for (PresenterAggregatorDefinition presenterToSave : definitionsToSave.getPresentersAggregators()) {
-            objectsStorage.putPresenterAggregator(presenterToSave);
-        }
-
-        for (PresenterCheckDefinition presenterToSave : definitionsToSave.getPresentersChecks()) {
-            objectsStorage.putPresenterCheck(presenterToSave);
-        }
+        definitionsToSave.getChecks().forEach(objectsStorage::putCheck);
+        definitionsToSave.getPresentersAggregators().forEach(objectsStorage::putPresenterAggregator);
+        definitionsToSave.getPresentersChecks().forEach(objectsStorage::putPresenterCheck);
 
         return new PutDefinitionsResponse(
-                definitionsToSave.getChecks().length,
-                definitionsToSave.getPresentersChecks().length,
-                definitionsToSave.getPresentersAggregators().length
+                definitionsToSave.getChecks().size(),
+                definitionsToSave.getPresentersChecks().size(),
+                definitionsToSave.getPresentersAggregators().size()
         );
     }
 
