@@ -41,8 +41,8 @@
             return this.definition.top;
         },
 
-        getClickUrl: function () {
-            return this.definition.clickUrl;
+        getClickAction: function () {
+            return this.definition.clickAction;
         },
 
         getFontSize: function () {
@@ -66,8 +66,8 @@
                 eventData.y >= this.getTop() &&
                 eventData.y <= this.getTop() + this.getHeight()
             ) {
-                if (this.getClickUrl() !== null) {
-                    window.open(this.getClickUrl());
+                if (this.getClickAction() !== null) {
+                    eval(this.getClickAction());
                 }
             }
         }
