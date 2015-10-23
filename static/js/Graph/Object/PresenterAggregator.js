@@ -34,7 +34,7 @@
         },
 
         getStatus: function () {
-            var status = 1000;
+            var status = 0;
             $.each(this.getSubPresenters(), function (index, currentSubPresenter) {
                 status = Math.min(
                     this.objects.getPresenter(currentSubPresenter).getStatus(),
