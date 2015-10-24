@@ -11,7 +11,7 @@
 
         reset: function () {
             this.status = 0;
-            this.message = "?";
+            this.message = "";
         },
 
         getSymbol: function () {

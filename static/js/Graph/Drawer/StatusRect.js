@@ -91,7 +91,7 @@
                 workspace.getY(right + 2*unit)
             );
 
-            if (message !== null) {
+            if (message !== null && message !== "") {
                 var lines = message.split("\n");
                 ctx.font = 'normal ' + workspace.getAbsolute(fontSize+1) + 'px sans-serif';
                 ctx.textBaseline = 'top';
