@@ -6,6 +6,7 @@
 
         initialize: function (params) {
             IndyMon.Graph.Object.Presenter.__super__.initialize.apply(this, [params]);
+            this.menu = params.menu;
             this.definition = params.definition;
             this.objects = params.objects;
             this.searcher = new IndyMon.Graph.Searcher.TitleSearcher({
@@ -67,7 +68,9 @@
                 eventData.y <= this.getTop() + this.getHeight()
             ) {
                 if (this.getClickAction() !== null) {
-                    eval(this.getClickAction());
+                    var clickAction = this.getClickAction();
+                    clickAction = clickAction.replace(/^menu\.show\(/, "this.menu.show(" + eventData.x + ", " + eventData.y + ", ");
+                    eval(clickAction);
                 }
             }
         },

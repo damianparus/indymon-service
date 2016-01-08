@@ -4,7 +4,8 @@
 
     IndyMon.Graph.Common.Objects = Backbone.Model.extend({
 
-        initialize: function () {
+        initialize: function (initData) {
+            this.menu = initData.menu;
             this.checks = [];
             this.presenters = [];
             this.zIndexedPresenters = [];
@@ -66,6 +67,7 @@
             $.each(objectsToImport, function(key, currentObjectDefinition) {
                 var newPresenter = new IndyMon.Graph.Object.PresenterAggregator({
                     definition: currentObjectDefinition,
+                    menu: this.menu,
                     objects: this
                 });
                 this.addPresenter(newPresenter);
@@ -76,6 +78,7 @@
             $.each(objectsToImport, function(key, currentObjectDefinition) {
                 var newPresenter = new IndyMon.Graph.Object.PresenterCheck({
                     definition: currentObjectDefinition,
+                    menu: this.menu,
                     objects: this
                 });
                 this.addPresenter(newPresenter);

@@ -7,6 +7,7 @@
         initialize: function (initData) {
             IndyMon.Graph.Common.Painter.__super__.initialize.apply(this);
             this.objects = initData.objects;
+            this.menu = initData.menu;
             this.setWorkspace(initData.workspace);
             this.objects.loadDefinitions(
                 this.definitionsCompleted.bind(this)
@@ -43,6 +44,11 @@
                 this.loadStatuses.bind(this),
                 1000
             );
+        },
+
+        processMouseDownEvent: function () {
+            IndyMon.Graph.Common.Painter.__super__.processMouseDownEvent.apply(this);
+            this.menu.removeIfVisibleAndNotClicked();
         }
 
     });

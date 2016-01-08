@@ -29,6 +29,7 @@
 <script type="text/javascript" src="js/Graph/Common/Finder.js"></script>
 <script type="text/javascript" src="js/Graph/Common/Painter.js"></script>
 <script type="text/javascript" src="js/Graph/Common/Main.js"></script>
+<script type="text/javascript" src="js/Graph/Common/Menu.js"></script>
 <script type="text/javascript" src="js/Graph/Drawer/StatusRect.js"></script>
 <script type="text/javascript" src="js/Graph/Object/Presenter.js"></script>
 <script type="text/javascript" src="js/Graph/Object/PresenterAggregator.js"></script>
@@ -57,6 +58,16 @@
 </div>
 
 <textarea class="copytextarea" style="display:none;"></textarea>
+
+<script type="text/template" id="MenuTemplate">
+
+    <div class="btn-group-vertical" role="group">
+<% _.each(elements, function(element, index) { %>
+        <button type="button" id="button-<%=index %>" class="btn btn-default"><span class="pull-left glyphicon glyphicon-<%= element.icon %>"></span> <%= element.title %></button>
+<% }); %>
+    </div>
+
+</script>
 
 </body>
 
