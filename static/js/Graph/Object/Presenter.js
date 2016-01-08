@@ -73,15 +73,6 @@
                     eval(clickAction);
                 }
             }
-        },
-
-        copyToClipboard: function (stringToCopy) {
-            var copyTextarea = document.querySelector('.copytextarea');
-            copyTextarea.value = stringToCopy;
-            copyTextarea.style.display='block';
-            copyTextarea.select();
-            document.execCommand('copy');
-            copyTextarea.style.display='none';
         }
 
     });
