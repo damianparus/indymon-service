@@ -1,6 +1,8 @@
 "use strict";
 
 $(document).ready(function() {
+    console.log("x");
+
     var workspaceObject = new IndyMon.Common.Painter.Workspace({
         el: '#painterWorkspace'
     });
@@ -10,10 +12,12 @@ $(document).ready(function() {
     var objects = new IndyMon.Graph.Common.Objects({
         menu: menu
     });
+    var reloader = new IndyMon.Common.Painter.Reloader();
     var painter = new IndyMon.Graph.Common.Painter({
         workspace: workspaceObject,
         objects: objects,
-        menu: menu
+        menu: menu,
+        reloader: reloader
     });
 
     workspaceObject.addPainter(painter);

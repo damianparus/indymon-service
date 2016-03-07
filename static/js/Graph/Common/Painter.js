@@ -6,6 +6,7 @@
 
         initialize: function (initData) {
             IndyMon.Graph.Common.Painter.__super__.initialize.apply(this);
+            this.reloader = initData.reloader;
             this.objects = initData.objects;
             this.menu = initData.menu;
             this.setWorkspace(initData.workspace);
@@ -47,6 +48,7 @@
         },
 
         processMouseDownEvent: function () {
+            this.reloader.reset();
             IndyMon.Graph.Common.Painter.__super__.processMouseDownEvent.apply(this);
             this.menu.removeIfVisibleAndNotClicked();
         }
