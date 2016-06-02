@@ -22,9 +22,14 @@ repositories {
     }
 }
 
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
+
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.3.5.RELEASE'
-    compile group: 'org.indymon',              name: 'indymon-common',          version: '1.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web',      version: '1.3.5.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '1.3.5.RELEASE'
+    compile group: 'org.indymon',              name: 'indymon-common',               version: '1.0.0.RELEASE'
 }
 
 task wrapper(type: Wrapper) {
