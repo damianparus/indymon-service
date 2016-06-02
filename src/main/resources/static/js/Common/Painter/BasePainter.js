@@ -32,9 +32,11 @@
         },
 
         processMouseUpEvent: function (eventData) {
-            $.each(this.paintersArray, function (index, currentPainter) {
-                currentPainter.processMouseUpEvent(eventData);
-            });
+            for (var loop = this.paintersArray.length-1; loop >= 0; loop--) {
+                if (this.paintersArray[loop].processMouseUpEvent(eventData)) {
+                    break;
+                }
+            }
         },
 
         processMouseDownEvent: function (eventData) {

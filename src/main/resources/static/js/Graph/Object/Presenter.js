@@ -71,8 +71,10 @@
                     var clickAction = this.getClickAction();
                     clickAction = clickAction.replace(/^menu\.show\(/, "this.menu.show(" + eventData.x + ", " + eventData.y + ", ");
                     eval(clickAction);
+                    return true;
                 }
             }
+            return false;
         }
 
     });

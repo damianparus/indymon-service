@@ -1,8 +1,6 @@
 "use strict";
 
 $(document).ready(function() {
-    console.log("x");
-
     var workspaceObject = new IndyMon.Common.Painter.Workspace({
         el: '#painterWorkspace'
     });
