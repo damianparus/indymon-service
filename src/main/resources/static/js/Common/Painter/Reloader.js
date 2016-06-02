@@ -19,10 +19,14 @@
 
         reloadTimer: function () {
             if (this.shouldReload) {
-                location.reload();
+                this.reloadNow();
             } else {
                 this.shouldReload = true;
             }
+        },
+
+        reloadNow: function () {
+            location.reload();
         }
 
     });

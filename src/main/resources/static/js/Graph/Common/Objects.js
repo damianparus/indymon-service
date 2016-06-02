@@ -6,6 +6,7 @@
 
         initialize: function (initData) {
             this.menu = initData.menu;
+            this.reloader = initData.reloader;
             this.checks = [];
             this.presenters = [];
             this.zIndexedPresenters = [];
@@ -37,7 +38,8 @@
         importStatuses: function (statusesLoadCompletedCallBack, newStatuses) {
             $.each(newStatuses.checksStatuses, function(key, currentStatus) {
                 if (typeof this.checks[currentStatus.symbol] === 'undefined') {
-                    alert("Unknown check symbol in status: " + currentStatus.symbol);
+                    this.reloader.reloadNow();
+                    console.log("Error: unknown check symbol in status: " + currentStatus.symbol);
                     return;
                 }
                 this.checks[currentStatus.symbol].setNewStatus(currentStatus);

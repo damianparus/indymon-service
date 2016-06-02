@@ -7,10 +7,11 @@ $(document).ready(function() {
     var menu = new IndyMon.Graph.Common.Menu({
         workspace: workspaceObject
     });
-    var objects = new IndyMon.Graph.Common.Objects({
-        menu: menu
-    });
     var reloader = new IndyMon.Common.Painter.Reloader();
+    var objects = new IndyMon.Graph.Common.Objects({
+        menu: menu,
+        reloader: reloader
+    });
     var painter = new IndyMon.Graph.Common.Painter({
         workspace: workspaceObject,
         objects: objects,
