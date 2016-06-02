@@ -1,3 +1,9 @@
+Devel:
+
+```
+./gradlew clean bootRun
+```
+
 Run:
 
 ```
