@@ -22,6 +22,7 @@
             var textFillColor;
             switch (status) {
                 case 0:
+                case 1000:
                     if (markedInSearch || !searchMode) {
                         boxFillColor = '#999999';
                     } else {
