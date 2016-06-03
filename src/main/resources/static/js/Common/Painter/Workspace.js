@@ -158,8 +158,8 @@
             this.painterDivSelector.mousedown(function (event) {
                 self.eventMouseDown(event);
             });
-            this.canvasSelector.bind('mousewheel', function(event, delta, deltaX, deltaY) {
-                self.mouseWheel(event, delta);
+            this.canvasSelector.bind('mousewheel', function(event, deltaX, deltaY, deltaFactor) {
+                self.mouseWheel(event, deltaFactor);
             });
         },
 

@@ -43,3 +43,9 @@ Sample JSON:
   ]
 }
 ```
+
+and CURL:
+
+```
+curl -v "http://localhost:8080/definitions" -XPUT -d @sampleJson -H "Content-Type: application/json"
+```
