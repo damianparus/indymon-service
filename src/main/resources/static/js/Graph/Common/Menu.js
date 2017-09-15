@@ -30,9 +30,11 @@
                 this.$el = $("#objectTypeDiv");
                 this.$el.mouseup(function(event) {
                     this.menuClicked = false;
+                    event.stopPropagation();
                 }.bind(this));
                 this.$el.mousedown(function(event) {
                     this.menuClicked = true;
+                    event.stopPropagation();
                 }.bind(this));
                 this.$el.html(template);
                 this.$el.css({left: coordinates.x, top: coordinates.y });
