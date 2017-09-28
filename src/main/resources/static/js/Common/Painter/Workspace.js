@@ -15,6 +15,7 @@
         scaleDistance: null,
         mouseButtonIsPressed: null,
         touchStartPosition: null,
+        mouseWheelTimeout: null,
 
         initialize: function (initData) {
             this.setWorkspace(this);
@@ -81,14 +82,6 @@
             IndyMon.Common.Painter.Workspace.__super__.render.apply(this);
         },
 
-        getMouseCoordinates: function () {
-            return this.mouseCoordinates;
-        },
-
-        getCanvasSelector: function () {
-            return this.canvasSelector;
-        },
-
         getPainterDivSelector: function () {
             return this.painterDivSelector;
         },
@@ -148,19 +141,30 @@
         },
 
         attachMouseEvents: function () {
-            var self = this;
             $(document).mouseup(function(event) {
-                self.eventMouseUp();
-            });
+                this.eventMouseUp();
+            }.bind(this));
             this.painterDivSelector.mousemove(function (event) {
-                self.eventMouseMove(event);
-            });
+                this.eventMouseMove(event);
+            }.bind(this));
             this.painterDivSelector.mousedown(function (event) {
-                self.eventMouseDown(event);
-            });
+                this.eventMouseDown(event);
+            }.bind(this));
             this.canvasSelector.bind('mousewheel', function(event, deltaX, deltaY, deltaFactor) {
-                self.mouseWheel(event, deltaFactor);
-            });
+                this.mouseWheelRegulator(event, deltaFactor);
+                event.preventDefault();
+            }.bind(this));
+        },
+
+        mouseWheelRegulator: function (event, deltaFactor) {
+            if (this.mouseWheelTimeout === null) {
+                this.mouseWheelTimeout = setTimeout(
+                    function() {
+                        this.mouseWheel(event, deltaFactor);
+                    }.bind(this),
+                    10
+                );
+            }
         },
 
         convertTouchEventToNormal : function (genericEvent) {
@@ -236,6 +240,13 @@
         },
 
         mouseWheel : function(event, delta) {
+            this.mouseWheelTimeout = null;
+            if (delta > 10) {
+                delta = 10;
+            } else if (delta < -10) {
+                delta = -10;
+            }
+            console.log(delta);
             var scaleModifier;
             if (delta > 0) {
                 scaleModifier = IndyMon.Common.Painter.Workspace.DEFAULT_ZOOM_IN;
@@ -321,23 +332,6 @@
             return this.scale;
         },
 
-        isScaleCorrect: function (scalesArray) {
-            if (scalesArray === null) {
-                return true;
-            }
-            var returnResult = false;
-            $.each(scalesArray, function(currentScaleIndex, currentScale) {
-                if (currentScale.from <= this.scale || currentScale.from === null) {
-                    if (currentScale.to >= this.scale || currentScale.to === null) {
-                        returnResult = true;
-                        return false;
-                    }
-                }
-            }.bind(this));
-
-            return returnResult;
-        },
-
         setVisibleRect: function (minX, maxX, minY, maxY) {
             var rectWidth = maxX - minX,
                 rectHeight = maxY - minY;
@@ -352,8 +346,8 @@
         }
 
     }, {
-        DEFAULT_ZOOM_IN: 1.1,
-        DEFAULT_ZOOM_OUT: 1/1.1
+        DEFAULT_ZOOM_IN: 1.07,
+        DEFAULT_ZOOM_OUT: 1/1.07
     });
 
 })(jQuery);
