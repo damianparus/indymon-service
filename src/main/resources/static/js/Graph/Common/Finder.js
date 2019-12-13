@@ -42,7 +42,10 @@
                     e.preventDefault();
                     self.show();
                 } else if (e.keyCode === 27) {
-                    self.hide();
+                    if (self.$el.is(':visible')) {
+                        e.preventDefault();
+                        self.hide();
+                    }
                 } else if (e.keyCode === 13) {
                     self.search(true);
                 }
@@ -53,6 +56,7 @@
             this.$el.css({
                 'display' : 'block'
             });
+            this.$('#finderSearchText').select();
             this.$('#finderSearchText').focus();
             this.search(false);
         },
