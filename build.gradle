@@ -10,7 +10,8 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -27,11 +28,11 @@ configurations {
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web',      version: '1.5.7.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '1.5.7.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web',      version: '2.2.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '2.2.2.RELEASE'
     compile group: 'org.indymon',              name: 'indymon-common',               version: '1.0.0.RELEASE'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
+wrapper {
+    gradleVersion = '5.6'
 }
