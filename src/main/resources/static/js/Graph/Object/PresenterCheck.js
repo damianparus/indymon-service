@@ -19,8 +19,10 @@
                 this.getStatus(),
                 this.searcher.isSearchMode(),
                 this.searcher.isMarkedInSearch(),
-                this.getFontSize(),
+                this.getTitleFontSize(),
                 this.getTitle(),
+                this.getDescriptionFontSize(),
+                this.getDescription(),
                 this.getMessage()
             );
         },

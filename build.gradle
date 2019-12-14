@@ -30,7 +30,7 @@ configurations {
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web',      version: '2.2.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '2.2.2.RELEASE'
-    compile group: 'org.indymon',              name: 'indymon-common',               version: '1.0.0.RELEASE'
+    compile group: 'org.indymon',              name: 'indymon-common',               version: '1.0.2.RELEASE'
 }
 
 wrapper {

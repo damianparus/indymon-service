@@ -46,8 +46,16 @@
             return this.definition.clickAction;
         },
 
-        getFontSize: function () {
-            return this.definition.fontSize;
+        getTitleFontSize: function () {
+            return this.definition.titleFontSize;
+        },
+
+        getDescription: function () {
+            return this.definition.description;
+        },
+
+        getDescriptionFontSize: function () {
+            return this.definition.descriptionFontSize;
         },
 
         getZIndex: function () {

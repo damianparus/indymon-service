@@ -4,19 +4,19 @@
 
     IndyMon.Common.Painter.StatusRect = Backbone.View.extend({}, {
 
-        paint: function (workspace, left, right, width, height, minScale, status, searchMode, markedInSearch, fontSize, title, message) {
+        paint: function (workspace, left, top, width, height, minScale, status, searchMode, markedInSearch, titleFontSize, title, descriptionFontSize, description, message) {
             var box = {
                 width: workspace.getAbsolute(width),
                 height: workspace.getAbsolute(height),
                 left: workspace.getX(left, true),
-                right: workspace.getY(right, true)
+                top: workspace.getY(top, true)
             };
 
             if (!IndyMon.Common.Painter.StatusRect.shouldPaint(workspace, box, minScale)) {
                 return false;
             }
 
-            var unit = fontSize/8;
+            var unit = titleFontSize/8;
 
             var boxFillColor;
             var textFillColor;
@@ -72,16 +72,16 @@
             ctx.fillStyle = boxFillColor;
             ctx.beginPath();
 
-            ctx.rect(box.left, box.right, box.width, box.height);
+            ctx.rect(box.left, box.top, box.width, box.height);
             ctx.fillRect(
                 workspace.getX(left),
-                workspace.getY(right),
+                workspace.getY(top),
                 box.width,
                 box.height
             );
             ctx.stroke();
 
-            ctx.font = 'bold ' + workspace.getAbsolute(fontSize) + 'px sans-serif';
+            ctx.font = 'bold ' + workspace.getAbsolute(titleFontSize) + 'px sans-serif';
             ctx.textBaseline = 'top';
             ctx.textAlign = 'left';
             ctx.textFillStyle = textFillColor;
@@ -89,17 +89,28 @@
             ctx.fillText(
                 title,
                 workspace.getX(left + 5*unit),
-                workspace.getY(right + 2*unit)
+                workspace.getY(top + 2*unit)
+            );
+
+            ctx.font = 'normal ' + workspace.getAbsolute(descriptionFontSize) + 'px sans-serif';
+            ctx.textBaseline = 'top';
+            ctx.textAlign = 'left';
+            ctx.textFillStyle = textFillColor;
+            ctx.fillStyle = textFillColor;
+            ctx.fillText(
+                description,
+                workspace.getX(left + 5*unit),
+                workspace.getY(top + titleFontSize + 2*unit)
             );
 
             if (message !== null && message !== "") {
                 var lines = message.split("\n");
-                ctx.font = 'normal ' + workspace.getAbsolute(fontSize+1) + 'px sans-serif';
+                ctx.font = 'normal ' + workspace.getAbsolute(titleFontSize + 1) + 'px sans-serif';
                 ctx.textBaseline = 'top';
                 ctx.textAlign = 'left';
                 ctx.textFillStyle = textFillColor;
                 ctx.fillStyle = textFillColor;
-                var currentY = right + 15*unit;
+                var currentY = top + 15*unit;
                 for (var line in lines) {
                     ctx.fillText(
                         lines[line],
@@ -114,21 +125,16 @@
         },
 
         shouldPaint: function (workspace, box, minScale) {
-
             if (minScale !== null && workspace.getScale() < minScale) {
                 return false;
             }
-
             var canvasSize = workspace.getCanvasSize();
-
-            if ((box.right > canvasSize.height) || (box.right + box.height < 0)) {
+            if ((box.top > canvasSize.height) || (box.top + box.height < 0)) {
                 return false;
             }
-
             if ((box.left > canvasSize.width) || (box.left + box.width < 0)) {
                 return false;
             }
-
             return true;
         },
 

@@ -246,7 +246,6 @@
             } else if (delta < -10) {
                 delta = -10;
             }
-            console.log(delta);
             var scaleModifier;
             if (delta > 0) {
                 scaleModifier = IndyMon.Common.Painter.Workspace.DEFAULT_ZOOM_IN;
