@@ -64,6 +64,15 @@
                     }
                     textFillColor = '#000000';
                     break;
+                case 5:
+                    if (markedInSearch || !searchMode) {
+                        boxFillColor = '#00ff00';
+                        textFillColor = '#ffffff';
+                    } else {
+                        boxFillColor = '#008800';
+                        textFillColor = '#888888';
+                    }
+                    break;
                 default:
                     alert("Unknown status: " + status + " ("+ title +")");
             }
