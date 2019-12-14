@@ -8,7 +8,7 @@ Run:
 
 ```
 ./gradlew clean build
-sudo java -jar ./build/libs/indymon-service-1.0.1.RELEASE.jar --spring.profiles.active=prod
+sudo java -jar ./build/libs/indymon-service-1.0.2.RELEASE.jar --spring.profiles.active=prod
 ```
 
 Sample JSON:
