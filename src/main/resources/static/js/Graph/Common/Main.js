@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     workspaceObject.addPainter(painter);
     workspaceObject.render();
-    workspaceObject.setVisibleRect(-830, 3640, -65, 2010);
+    workspaceObject.setVisibleRect(0, 0, 100, 100);
 
     var finder = new IndyMon.Graph.Common.Finder({
         el: '#finderDiv',
