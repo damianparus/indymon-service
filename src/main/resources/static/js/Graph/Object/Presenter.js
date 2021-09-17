@@ -19,7 +19,7 @@
         },
 
         getTitle: function () {
-            return this.definition.title;
+            return this.definition.title || "";
         },
 
         getMinScale: function () {
@@ -51,7 +51,7 @@
         },
 
         getDescription: function () {
-            return this.definition.description;
+            return this.definition.description || "";
         },
 
         getDescriptionFontSize: function () {
